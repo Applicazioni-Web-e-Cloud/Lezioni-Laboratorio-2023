@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <style>
+        pre {}
+    </style>
+</head>
+
+<body>
+    <div class="container-sm">
+
+        Regex
+
+        <div class="mb-4 mt-4 p-4 border border-success">
+            <div class="mb-4">
+                <label class="form-label" for="text">Email address</label>
+                <input type="text" class="form-control" id="text" value="Testo di prova! ">
+
+            </div>
+            <p>Match "Testo":</p>
+            <p>Regex: <code>/Testo/</code></p>
+            <pre class="border border-success p-2" id="ptesto"></pre>
+            <p>Match Tutti i caratteri fino ad uno spazio:</p>
+            <p>Regex: <code>/[A-Za-z]+\s/</code></p>
+            <pre class="border border-success p-2" id="tutti"></pre>
+            <p>Match a tutti i caretteri alfabetici</p>
+            <p>Regex: <code>/[A-Za-z]/</code></p>
+            <pre class="border border-success p-2" id="alfabetici"></pre>
+
+            <p>Match una sola lettera</p>
+            <p>Regex: <code>/!/</code></p>
+            <pre class="border border-success p-2" id="unasola"></pre>
+        </div>
+        <pre>Match la prima lettera, quella in mezzo anche assente o ripetuta, l'ultima lettera</pre>
+        <p>Regex: <code>/A(?:b|B)*C/</code></p>
+        <input type="text" class="form-control" id="centraleSource" onkeyup="aggiornaCentrale()" value="ABC">
+        <pre class="border border-success p-2 mt-2" id="centrale"></pre>
+        <p>Questa lista rappresenta in formato testuale i prezzi di alcuni prodotti, cerchiamo i valori in euro</p>
+        <p>Regex: <code>/€\d*\d.\d\d/mg</code></p>
+        <pre class="border border-info p-2 mt-2" id="prezziSorgente">
+€25.99 - "Il gatto inseguiva la palla nel giardino."
+"Il vecchio negozio di libri profumava di nostalgia e caffè." - €18.75
+€33.50 - "Le persone camminavano di fretta, perse nei loro pensieri."
+"Il sole tramontava dietro le montagne in uno spettacolo spettacolare." - €42.25
+€10.00 - "I bambini ridevano e giocavano nel parco."
+"Il profumo del pane appena sfornato riempiva l'aria." - €7.99
+€50.80 - "Il traffico strisciava lungo le affollate strade della città."
+"I libri si accumulavano disordinati sulla scrivania ingombra." - €22.30
+€15.50 - "La lontana musica risuonava per le strade."
+"Le gocce di pioggia picchiettavano dolcemente sul davanzale." - €5.75
+        </pre>
+        <pre class="border border-success p-2" id="prezzi"></pre>
+
+
+    </div>
+    <script>
+
+
+        var regex = /Testo/
+        ptesto.innerHTML = regex.exec(text.value)
+
+        var regex = /[A-Za-z]+\s/
+        tutti.innerHTML = regex.exec(text.value)
+
+        var regex = /[A-Za-z]/
+        alfabetici.innerHTML = regex.exec(text.value)
+
+        var regex = /!/
+        unasola.innerHTML = regex.exec(text.value)
+
+        
+        aggiornaCentrale()
+
+        regex = /€\d*\d.\d\d/mg
+
+
+        while (match = regex.exec(prezziSorgente.innerHTML)) {
+            prezzi.innerHTML += match[0] + '\n'
+
+        }
+
+
+        function aggiornaCentrale() {
+            var regex = /A(?:b|B)*C/
+
+            centrale.innerHTML = regex.exec(centraleSource.value)
+        }
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    </script>
+</body>
+
+</html>
